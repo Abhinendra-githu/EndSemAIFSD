@@ -12,7 +12,7 @@ const Dashboard = () => {
     const fetchComplaints = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        const { data } = await axios.get('http://localhost:5000/api/complaints', config);
+        const { data } = await axios.get('/api/complaints', config);
         setComplaints(data);
       } catch (error) {
         console.error('Error fetching complaints', error);

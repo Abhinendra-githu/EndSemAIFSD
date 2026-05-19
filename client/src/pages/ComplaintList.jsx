@@ -13,15 +13,15 @@ const ComplaintList = () => {
   const categories = ['', 'Water Supply', 'Electricity', 'Sanitation', 'Road Damage', 'Public Safety', 'Other'];
 
   const fetchComplaints = async () => {
-    try {
+      try {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      let url = 'http://localhost:5000/api/complaints';
+      let url = '/api/complaints';
       
       if (search) {
-        url = `http://localhost:5000/api/complaints/search?location=${search}`;
+        url = `/api/complaints/search?location=${search}`;
       } else if (categoryFilter) {
-        url = `http://localhost:5000/api/complaints/filter?category=${categoryFilter}`;
+        url = `/api/complaints/filter?category=${categoryFilter}`;
       }
 
       const { data } = await axios.get(url, config);
@@ -40,7 +40,7 @@ const ComplaintList = () => {
   const handleStatusUpdate = async (id, newStatus) => {
     try {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
-      await axios.put(`http://localhost:5000/api/complaints/${id}`, { status: newStatus }, config);
+      await axios.put(`/api/complaints/${id}`, { status: newStatus }, config);
       fetchComplaints();
     } catch (error) {
       console.error('Error updating status', error);

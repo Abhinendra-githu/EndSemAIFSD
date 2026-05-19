@@ -36,7 +36,7 @@ const RegisterComplaint = () => {
       // 1. Analyze with AI
       let aiData = { priority: 'Medium', department: 'General', summary: 'AI Analysis unavailable', autoResponse: 'We have received your complaint.' };
       try {
-        const aiResponse = await axios.post('http://localhost:5000/api/ai/analyze', {
+        const aiResponse = await axios.post('/api/ai/analyze', {
           description: formData.description
         }, config);
         if (aiResponse.data) {
@@ -57,7 +57,7 @@ const RegisterComplaint = () => {
         autoResponse: aiData.autoResponse
       };
 
-      await axios.post('http://localhost:5000/api/complaints', complaintData, config);
+      await axios.post('/api/complaints', complaintData, config);
       navigate('/complaints');
       
     } catch (err) {
